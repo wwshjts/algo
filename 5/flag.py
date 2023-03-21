@@ -4,7 +4,6 @@ zero_space_ptr = -1
 end_ptr = n - 1
 curr = 0 
 while curr <= end_ptr:
-    print(nums[curr], curr)
     if nums[curr] == 0:
         zero_space_ptr += 1
         nums[curr], nums[zero_space_ptr] = nums[zero_space_ptr], nums[curr]
