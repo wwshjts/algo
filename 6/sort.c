@@ -35,7 +35,7 @@ void sort(int * a, int l, int r, int algo){
     if (r - l < 1)
         return;
     int p = hoare_partition(a, l, r);
-    sort(a, l, p, 0);
+    sort(a, l, p - 1, 0);
     sort(a, p + 1, r, 0);
 
 }
