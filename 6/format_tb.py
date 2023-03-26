@@ -18,6 +18,3 @@ def format_table(benchmarks, algos, results):
         
      
     
-format_table(["best case", "worst case"],
-["quick sort", "merge sort", "bubble sort", "bogo"],
-[[1.23, 1.56, 2.0, 5.21], [3.3, 2.9, 3.9, 41.1]])
