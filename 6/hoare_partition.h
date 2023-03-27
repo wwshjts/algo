@@ -29,7 +29,7 @@ int lomuto_naive(int * a, int l, int r){
     int pivot_1 = (l + 1) + (rand() % (r - l));
     int pivot_2 =  l + ((rand()) % (l - pivot_1));
     int pivot_i = a[pivot_1] <= a[pivot_2] ? pivot_1 : pivot_2;
-    int pivot = a[pivot_i];
+    pivot = a[pivot_i];
     swap(&a[l], &a[pivot_i]);
     pivot_i = l;
     l++;

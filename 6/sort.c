@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<time.h>
 #include"hoare_partition.h"
-#define MAX_LEN 100000
+#define MAX_LEN 1000000
 void swap(int * a_ptr, int * b_ptr);
 void sort(int * a, int l, int r, int algo);
 int main(void)
@@ -25,8 +25,9 @@ int main(void)
         start = clock();
         sort(nums, 0, n-1, i);
         end = clock();
-        //for(int j = 0; j < n; j++)
-        //    fprintf(out, "%d ", nums[j]);
+        for(int j = 0; j < n; j++)
+            fprintf(out, "%d ", nums[j]);
+        fprintf(out, "\n");
         for(int j = 0; j < n; j++)
             nums[j] = data[j];
         fprintf(out, "%f\n", (double)(end - start) / CLOCKS_PER_SEC);
