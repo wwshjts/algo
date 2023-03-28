@@ -29,7 +29,7 @@ int lomuto_naive(int * a, int l, int r){
     if (a[l] <= a[r])
         swap(&a[l], &a[r]); 
     int pivot_i = l;
-    int pivot = a[l];
+    pivot = a[l];
     l++;
     int i = l;
     for(int j = l; j <= r; j++){

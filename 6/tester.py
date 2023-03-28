@@ -4,7 +4,10 @@ from random import randint
 from format_tb import format_table
 l = 900000
 n = 5
-res = []
+names = ['hoare', 'naive', 'giga']
+os.system('gcc -Ofast sort_hoare.c -o hoare')
+os.system('gcc -Ofast sort_lomuto_naive.c -o naive')
+os.system('gcc -Ofast sort_giga_lomuto.c -o giga')
 for i in range(1, 5):
     a = [(randint(1,2000)) for _ in range(l)]
     test_case = sorted(a)
@@ -12,12 +15,14 @@ for i in range(1, 5):
         f.write(str(l) + '\n')
         for x in a:
             f.write(str(x) + ' ')
-    os.system('./a.out')
-    res =[]
-    with open('output.txt', 'r') as f:
-        for i in range(3):
+    res = []
+    for i in range(3):
+        os.system('./' + names[i])
+        with open('output.txt', 'r') as f:
+            res.append(float(f.readline())) 
             tmp = list(map(int, f.readline().strip().split(' ')))
             if tmp != test_case:
                 print("ALARM")
-            res.append(float(f.readline()))
     print(res)
+
+os.system(f'rm {names[0]} {names[1]} {names[2]}')
