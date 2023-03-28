@@ -1,6 +1,6 @@
 int hoare_partition(int * a, int l, int r);
 int lomuto_naive(int * a, int l, int r);
-int lomuto(int * a, int l, int r);
+int* lomuto(int * l, int * r);
 
 int hoare_partition(int * a, int l, int r){
     int pivot;
@@ -26,11 +26,10 @@ int hoare_partition(int * a, int l, int r){
     return l;
 }
 int lomuto_naive(int * a, int l, int r){
-    int pivot;
-    int pivot_i = l + (rand() % (r - l));
-    pivot = a[pivot_i];
-    swap(&a[l], &a[pivot_i]);
-    pivot_i = l;
+    if (a[l] <= a[r])
+        swap(&a[l], &a[r]); 
+    int pivot_i = l;
+    int pivot = a[l];
     l++;
     int i = l;
     for(int j = l; j <= r; j++){
@@ -43,23 +42,21 @@ int lomuto_naive(int * a, int l, int r){
     return i;
 }
 
-int lomuto(int * a, int l, int r){
-    int pivot;
-    int pivot_i = l + (rand() % (r - l));
-    pivot = a[pivot_i]; 
-    swap(&a[l], &a[pivot_i]);
-    pivot_i = l;
-    l++;
-    int i = l;
-    while((a[i] < pivot) && (i < r)) i++;
-    for (int j = i; j <= r; j++){
-        int x = a[j];
+int* lomuto(int* l, int* r){
+    if(*l > *r)
+        swap(l, r);
+    int pivot = *l; 
+    int * pivot_i = l;
+    int * i = ++l;
+    while((*i < pivot) && (i <= r)) i++;
+    for (int * j = i; j <= r; j++){
+        int x = *j;
         int smaller = -(x < pivot);
         int delta = smaller & (j - i);
-        a[i + delta] = a[i];
-        a[j - delta] = x;
+        i[delta] = *i;
+        j[-delta] = x;
         i -= smaller;
     }
-    swap(&a[pivot_i], &a[--i]);
+    swap(pivot_i, --i);
     return i;
 }

@@ -2,7 +2,7 @@
 import os
 from random import randint
 from format_tb import format_table
-l = 1000000
+l = 900000
 n = 5
 res = []
 for i in range(1, 5):
