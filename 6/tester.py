@@ -5,9 +5,9 @@ from format_tb import format_table
 l = 900000
 n = 5
 names = ['hoare', 'naive', 'giga']
-os.system('gcc -Ofast sort_hoare.c -o hoare')
-os.system('gcc -Ofast sort_lomuto_naive.c -o naive')
-os.system('gcc -Ofast sort_giga_lomuto.c -o giga')
+os.system('clang -Ofast sort_hoare.c -o hoare')
+os.system('clang -Ofast sort_lomuto_naive.c -o naive')
+os.system('clang -Ofast -DNEBUG sort_giga_lomuto.c -o giga')
 for i in range(1, 5):
     a = [(randint(1,2000)) for _ in range(l)]
     test_case = sorted(a)
