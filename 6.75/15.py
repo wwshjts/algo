@@ -25,7 +25,6 @@ class Vector:
         if self.__head == 0:
             return None
         if self.__head <= (self.__size // 4):
-            print('wtf')
             self.__shrink()
         self.__head -= 1
         return(self.__vector[self.__head]) 
