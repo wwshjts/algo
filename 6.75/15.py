@@ -36,4 +36,4 @@ for i in range(1, 12):
     arr.pr()
 for i in range(8):
     arr.pop()
-arr.pr()
+    arr.pr()
