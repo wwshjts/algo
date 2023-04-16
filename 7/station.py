@@ -4,12 +4,11 @@ precedence = {'(' : 3, ')': 3, None : 3, '!' : 0, '~': 0, '^' : 0, '*' : 1, '/' 
 right_to_left = {'!', '~'}
 stack = Stack()
 inp = input('> ')
-ans = eval(inp)
 inp = inp.split()
 result = ''
 for item in inp:
     if item.isnumeric():
-        result += item
+        result += (f' {item} ')
     elif item == '(':
         stack.push(item)
     elif item == ')':
@@ -19,11 +18,11 @@ for item in inp:
     else:
         n_rtl = (item not in right_to_left) and (precedence[stack.seek()] == precedence[item])
         while ( (precedence[stack.seek()] < precedence[item]) or n_rtl):
-            result += stack.pop()
+            result += ' ' + stack.pop() + ' '
             n_rtl = (item not in right_to_left) and (precedence[stack.seek()] == precedence[item])
         stack.push(item)
 while not stack.empty():
-    result += stack.pop()
+    result += f' {stack.pop()} '
 print(result)
     
 

@@ -31,7 +31,6 @@ class LinkedList:
         else:
             self.tail.nxt = node
             self.tail = self.tail.nxt
-            print(self.tail.val)
     def rm_head(self):
         if self.head: 
             self.head = self.head.nxt
@@ -185,6 +184,7 @@ class BinaryHeapMin:
                 self.a[curr], self.a[max_leaf] = self.a[max_leaf], self.a[curr] 
                 curr = max_leaf
             leaves = self.leaves(curr)
+
     def heapify_up(self):
         curr = self.a.len - 1
         par = self.parent(curr)
@@ -199,13 +199,17 @@ class BinaryHeapMin:
         self.a.pr
     def extract_min(self):
         self.a[0], self.a[self.a.len - 1] = self.a[self.a.len - 1], self.a[0]
-        self.a.pop()
+        mn = self.a.pop()
         self.heapify_down()
+        return mn
     @property
-    def max(self):
+    def min(self):
         if self.a.len > 0:
             return self.a[0]
         return None
+    @property
+    def len(self):
+        return self.a.len
 
 class PriorityQue:
     class Pair:
@@ -232,8 +236,13 @@ class PriorityQue:
         self.que = BinaryHeapMin()
     def insert(self,pr, value):
         self.que.insert(self.Pair(pr, value))
-    def peek_max(self):
+    def peek_min(self):
         return self.que.max
+    def extract_min(self):
+        return self.que.extract_min()
     def print(self):
         for i in range(self.que.a.len):
             print(self.que.a[i].pair)
+    @property
+    def len(self):
+        return self.que.len
