@@ -147,15 +147,8 @@ class BinaryHeap:
         self.heapify_up()
     def print(self):
         self.a.pr
-    def ch_max(self, val):
-        self.a[0] = val 
+    def extract_max(self):
+        self.a[0], self.a[self.a.len - 1] = self.a[self.a.len - 1], self.a[0]
+        self.a.pop()
         self.heapify_down()
 
-hp = BinaryHeap(size = 5)
-for i in range(4, 10):
-    hp.insert(i)
-
-hp.print()  
-hp.ch_max(val = 2)
-hp.print()
-    
