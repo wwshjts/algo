@@ -108,7 +108,7 @@ class Vector:
 
 
 class BinaryHeap:
-    def __init__(self, size = 0):
+    def __init__(self, size = 1):
         self.a = Vector(size = size)
     #return's list of existing leaves indexes
     def leaves(self, i):
@@ -138,7 +138,7 @@ class BinaryHeap:
     def heapify_up(self):
         curr = self.a.len - 1
         par = self.parent(curr)
-        while curr > 0 or (self.a[curr] > self.a[par]):
+        while (curr > 0) or (self.a[curr] > self.a[par]):
             self.a[curr], self.a[par] = self.a[par], self.a[curr]
             curr = par
             par = self.parent(curr)
@@ -151,4 +151,34 @@ class BinaryHeap:
         self.a[0], self.a[self.a.len - 1] = self.a[self.a.len - 1], self.a[0]
         self.a.pop()
         self.heapify_down()
+    @property
+    def max(self):
+        if self.a.len > 0:
+            return self.a[0]
+        return None
 
+class PriorityQue:
+    class Pair:
+        def __init__(self, pr, value):
+            self.pair = (pr, value)
+        def __gt__(self, op):
+            op1 = self.pair
+            op2 = op.pair
+            if op1[0] > op2[0]:
+                return True
+            return False
+        def __ge__(self, op):
+            op1 = self.pair
+            op2 = op.pair
+            if op1[0] >= op2[0]:
+                return True
+            return False
+    def __init__(self):
+        self.que = BinaryHeap()
+    def insert(self,pr, value):
+        self.que.insert(self.Pair(pr, value))
+    def peek_max(self):
+        return self.que.max
+    def print(self):
+        for i in range(self.que.a.len):
+            print(self.que.a[i].pair)
