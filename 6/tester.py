@@ -5,8 +5,8 @@ from format_tb import format_table
 l = 1000000
 n = 10
 names = ['hoare', 'naive', 'giga']
-os.system('clang -Ofast sort_hoare.c -o hoare')
-os.system('clang -Ofast sort_lomuto_naive.c -o naive')
+os.system('gcc -Ofast sort_hoare.c -o hoare')
+os.system('gcc -Ofast sort_lomuto_naive.c -o naive')
 os.system('gcc -Ofast -DNEBUG sort_giga_lomuto.cpp -o giga')
 for i in range(1, n):
     a = [i for i in range(l)]
