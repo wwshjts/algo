@@ -6,7 +6,7 @@ def test_sort(algh):
     print(f'testing {algh.__name__}')
     print(f'test case 1: {"correct" if sorted(a) == algh(a) else "false"}')
     for i in range(1, 10 + 1):
-        a = [''.join([chr(x + 97) for x in range(1, alphas)]) for _ in range(10)]
+        a = [''.join([chr(x + a_code) for x in range(1, alphas)]) for _ in range(10)]
         print(f'test case {i + 1}: {"correct" if sorted(a) == algh(a) else "false"}')
 def counting_sort(a, digit):
     tmp = [0]*alphas

@@ -2,14 +2,15 @@
 import os
 from random import randint
 from format_tb import format_table
-l = 900000
+l = 1000000
 n = 5
 names = ['hoare', 'naive', 'giga']
 os.system('clang -Ofast sort_hoare.c -o hoare')
 os.system('clang -Ofast sort_lomuto_naive.c -o naive')
-os.system('clang -Ofast -DNEBUG sort_giga_lomuto.c -o giga')
+os.system('gcc -Ofast -DNEBUG sort_giga_lomuto.cpp -o giga')
+#Избавиться от повторений во воходе
 for i in range(1, 5):
-    a = [(randint(1,2000)) for _ in range(l)]
+    a = [(randint(1,200000)) for _ in range(l)]
     test_case = sorted(a)
     with open('input.txt', 'w') as f:
         f.write(str(l) + '\n')

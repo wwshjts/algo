@@ -46,7 +46,6 @@ class LinkedList:
 class Stack:
     def __init__(self):
         self.stack = LinkedList()
-    
     def push(self, val): 
         self.stack.add(val)
     def empty(self):
@@ -94,14 +93,18 @@ class Vector:
             self.__shrink()
         self.__head -= 1
         return(self.__vector[self.__head]) 
+
     @property 
     def pr(self):
         print(self.__vector)
+
     @property
     def len(self):
         return self.__head
+
     def __getitem__(self, i):
         return self.__vector[i]
+        
     def __setitem__(self, i, val):
         self.__vector[i] = val
 
@@ -159,6 +162,7 @@ class BinaryHeapMax:
 class BinaryHeapMin:
     def __init__(self, size = 1):
         self.a = Vector(size = size)
+        self.val_to_ind = dict()
     #return's list of existing leaves indexes
     def leaves(self, i):
         res = []
@@ -246,3 +250,9 @@ class PriorityQue:
     @property
     def len(self):
         return self.que.len
+
+q = PriorityQue()
+q.insert(1, 0)
+q.insert(42, 2)
+q.insert(-1, 3)
+q.print() 
