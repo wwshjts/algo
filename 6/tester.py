@@ -1,16 +1,16 @@
 #!/usr/bin/python
 import os
-from random import randint
+from random import randint, shuffle
 from format_tb import format_table
 l = 1000000
-n = 5
+n = 10
 names = ['hoare', 'naive', 'giga']
 os.system('clang -Ofast sort_hoare.c -o hoare')
 os.system('clang -Ofast sort_lomuto_naive.c -o naive')
 os.system('gcc -Ofast -DNEBUG sort_giga_lomuto.cpp -o giga')
-#Избавиться от повторений во воходе
-for i in range(1, 5):
-    a = [(randint(1,200000)) for _ in range(l)]
+for i in range(1, n):
+    a = [i for i in range(l)]
+    shuffle(a)
     test_case = sorted(a)
     with open('input.txt', 'w') as f:
         f.write(str(l) + '\n')
