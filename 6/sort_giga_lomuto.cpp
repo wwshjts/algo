@@ -25,7 +25,7 @@ int main(void)
         nums[i] = data[i];
     clock_t start, end;
     start = clock();
-    lomuto(nums, &nums[n - 1]);
+    sort(nums, &nums[n]);
     end = clock();
     fprintf(out, "%f\n", (double)(end - start) / CLOCKS_PER_SEC);
     for(long j = 0; j < n; j++)
@@ -39,40 +39,35 @@ long* lomuto(long* first, long* last) {
     assert(first <= last);
     if (last - first < 2)
         return first; // nothing interesting to do
-    // Choose pivot.
     --last;
     if (*first > *last)
         swap(*first, *last);
     auto pivot_pos = first;
     auto pivot = *first;
-    printf("%ld\n", pivot);
-    // Prelude.
     do {
         ++first;
         assert(first <= last);
     } while (*first < pivot);
-    // Main loop.
     for (auto read = first + 1; read < last; ++read) {
         auto x = *read;
-        auto less = -int(x < pivot);
-        auto delta = less & (read - first);
+        auto smaller = -int(x < pivot);
+        auto delta = smaller & (read - first);
         first[delta] = *first;
         read[-delta] = x;
-        first -= less;
+        first -= smaller;
     }
-    // Move the pivot to its final slot.
     assert(*first >= pivot);
     --first;
     *pivot_pos = *first;
     *first = pivot;
     return first;
-}
+    }
 void sort(long * l, long * r){
     if (r - l < 1){
         return;
     }
     long* p;
     p = lomuto(l, r);
-    sort(l, p - 1);
+    sort(l, p);
     sort(p + 1,r);
 }
